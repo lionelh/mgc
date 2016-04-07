@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <mgc_type_card tc_id="7" tc_name="Sorcery" tc_name_fr="Rituel" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="1" tc_name="Artifact" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="2" tc_name="Creature" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="3" tc_name="Instant" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="4" tc_name="Artifact Creature" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="5" tc_name="Artifact Land" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="6" tc_name="Enchantment" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="8" tc_name="Land" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="9" tc_name="Legendary Artifact Creature" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="10" tc_name="Basic Land" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="11" tc_name="Legendary Creature" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+  <mgc_type_card tc_id="12" tc_name="Legendary Artifact" tc_creation_date="2015-02-24 16:13:57" tc_last_update_date="2015-02-24 16:13:57" />
+</dataset>

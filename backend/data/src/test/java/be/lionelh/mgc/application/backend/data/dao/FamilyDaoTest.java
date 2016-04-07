@@ -1,10 +1,6 @@
 package be.lionelh.mgc.application.backend.data.dao;
 
 import be.lionelh.mgc.application.backend.data.domain.Family;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 import java.util.List;
 

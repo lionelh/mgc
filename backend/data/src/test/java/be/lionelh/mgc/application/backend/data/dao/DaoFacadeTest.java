@@ -2,10 +2,7 @@ package be.lionelh.mgc.application.backend.data.dao;
 
 import be.lionelh.mgc.application.backend.data.domain.Capacity;
 import be.lionelh.mgc.application.backend.data.domain.Family;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import be.lionelh.mgc.application.backend.data.domain.TypeCard;
 
 import java.util.List;
 import static org.junit.Assert.assertEquals;
@@ -106,7 +103,7 @@ public class DaoFacadeTest {
     public void testRemoveCapacity() {
         Capacity c = this.bean.findCapacityById(2L);
 
-        this.bean.removeCapacity(c);
+        this.bean.deleteCapacity(c);
         assertNull(this.bean.findCapacityById(2L));
         assertEquals(1, this.bean.findAllCapacities().size());
     }
@@ -183,8 +180,84 @@ public class DaoFacadeTest {
     public void testDelete() {
         Family f = this.bean.findFamilyById(24L);
 
-        this.bean.removeFamily(f);
+        this.bean.deleteFamily(f);
         assertNull(this.bean.findFamilyById(24L));
         assertEquals(6, this.bean.findAllFamilies().size());
+    }
+
+    @Test
+    @DataSet("/datasets/type_card.xml")
+    public void testCreateTypeCard() {
+        TypeCard tc = new TypeCard();
+        tc.setName("TypeCard 001");
+
+        TypeCard newTypeCard = this.bean.createTypeCard(tc);
+        assertNotNull(newTypeCard);
+        assertNotNull(newTypeCard.getId());
+        assertEquals(13, this.bean.findAllTypeCards().size());
+        assertEquals("TypeCard 001", newTypeCard.getName());
+    }
+
+    @Test
+    @DataSet("/datasets/type_card.xml")
+    public void testFindAllTypeCards() {
+        List<TypeCard> l = this.bean.findAllTypeCards();
+        assertNotNull(l);
+        assertEquals(12, l.size());
+    }
+
+    @Test
+    @DataSet("/datasets/type_card.xml")
+    public void testFindTypeCardById() {
+        TypeCard tc = this.bean.findTypeCardById(1L);
+        assertNotNull(tc);
+        assertEquals("Artifact", tc.getName());
+    }
+
+    @Test
+    @DataSet("/datasets/type_card.xml")
+    public void testFindTypeCardByName() {
+        TypeCard tc = this.bean.findTypeCardByName("Instant");
+        assertNotNull(tc);
+        assertEquals(new Long(3), tc.getId());
+    }
+
+    @Test
+    @DataSet("/datasets/type_card.xml")
+    public void testFindTypeCardByNom() {
+        TypeCard tc = this.bean.findTypeCardByNom("Rituel");
+        assertNotNull(tc);
+        assertEquals("Sorcery", tc.getName());
+        assertEquals(new Long(7), tc.getId());
+    }
+
+    @Test
+    @DataSet("/datasets/type_card.xml")
+    public void testUpdateTypeCard() {
+        TypeCard tc = this.bean.findTypeCardById(8L);
+        assertEquals("Land", tc.getName());
+        TypeCard oldTypeCard = new TypeCard();
+        oldTypeCard.setId(tc.getId());
+        oldTypeCard.setName(tc.getName());
+        oldTypeCard.setNom(tc.getNom());
+        oldTypeCard.setCreationDate(tc.getCreationDate());
+        oldTypeCard.setLastUpdateDate(tc.getLastUpdateDate());
+
+        tc.setNom("Terrain");
+        TypeCard updatedTypeCard = this.bean.updateTypeCard(tc);
+        assertEquals("Terrain", updatedTypeCard.getNom()); // Was null
+        
+        assertNotEquals(oldTypeCard.getLastUpdateDate(), updatedTypeCard.getLastUpdateDate()); // This date must have change !
+        assertEquals(oldTypeCard.getCreationDate(), updatedTypeCard.getCreationDate()); // This date must not have changed !
+    }
+
+    @Test
+    @DataSet("/datasets/type_card.xml")
+    public void testDeleteTypeCard() {
+        TypeCard tc = this.bean.findTypeCardById(10L);
+
+        this.bean.deleteTypeCard(tc);
+        assertNull(this.bean.findTypeCardById(10L));
+        assertEquals(11, this.bean.findAllTypeCards().size());
     }
 }

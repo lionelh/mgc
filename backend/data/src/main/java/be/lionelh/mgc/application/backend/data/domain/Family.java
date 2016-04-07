@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Family.FIND_BY_NAME", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Family(f.id,f.name,f.nom,f.creationDate,f.lastUpdateDate) FROM Family f WHERE f.name = :name"),
     @NamedQuery(name = "Family.FIND_BY_NOM", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Family(f.id,f.name,f.nom,f.creationDate,f.lastUpdateDate) FROM Family f WHERE f.nom = :nom"),
 })
-@SuppressWarnings("SerializableClass")
+@SuppressWarnings({"SerializableClass", "PersistenceUnitPresent"})
 public class Family implements Persistable, Serializable {
 
     @Id

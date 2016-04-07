@@ -1,7 +1,6 @@
 package be.lionelh.mgc.application.backend.data.dao.impl;
 
 import be.lionelh.mgc.application.backend.data.dao.FamilyDao;
-import be.lionelh.mgc.application.backend.data.domain.Capacity;
 import be.lionelh.mgc.application.backend.data.domain.Family;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Repository;
 /**
  * @author Lionel
  */
-@Repository("familyyDao")
+@Repository("familyDao")
 public class FamilyDaoImpl implements FamilyDao {
 
     @PersistenceContext

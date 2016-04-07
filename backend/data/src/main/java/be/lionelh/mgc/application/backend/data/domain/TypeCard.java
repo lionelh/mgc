@@ -18,39 +18,39 @@ import javax.persistence.TemporalType;
 /**
  * @author lh
  */
-@Entity(name = "Capacity")
+@Entity(name = "TypeCard")
 @EntityListeners({DateEntityListener.class})
-@Table(name = "mgc_capacity")
+@Table(name = "mgc_type_card")
 @NamedQueries({
-    @NamedQuery(name = "Capacity.FIND_ALL", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Capacity(c.id,c.name,c.nom,c.creationDate,c.lastUpdateDate) FROM Capacity c"),
-    @NamedQuery(name = "Capacity.FIND_BY_NAME", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Capacity(c.id,c.name,c.nom,c.creationDate,c.lastUpdateDate) FROM Capacity c WHERE c.name = :name"),
-    @NamedQuery(name = "Capacity.FIND_BY_NOM", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Capacity(c.id,c.name,c.nom,c.creationDate,c.lastUpdateDate) FROM Capacity c WHERE c.nom = :nom"),
+    @NamedQuery(name = "TypeCard.FIND_ALL", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.TypeCard(tc.id,tc.name,tc.nom,tc.creationDate,tc.lastUpdateDate) FROM TypeCard tc"),
+    @NamedQuery(name = "TypeCard.FIND_BY_NAME", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.TypeCard(tc.id,tc.name,tc.nom,tc.creationDate,tc.lastUpdateDate) FROM TypeCard tc WHERE tc.name = :name"),
+    @NamedQuery(name = "TypeCard.FIND_BY_NOM", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.TypeCard(tc.id,tc.name,tc.nom,tc.creationDate,tc.lastUpdateDate) FROM TypeCard tc WHERE tc.nom = :nom"),
 })
 @SuppressWarnings({"SerializableClass", "PersistenceUnitPresent"})
-public class Capacity implements Persistable, Serializable {
+public class TypeCard implements Persistable, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CP_ID", insertable = true, nullable = false, precision = 20, scale = 0, unique = true, updatable = true)
+    @Column(name = "TC_ID", insertable = true, nullable = false, precision = 20, scale = 0, unique = true, updatable = true)
     private Long id;
 
-    @Column(name = "CP_NAME", insertable = true, nullable = false, length = 255, unique = true, updatable = true)
+    @Column(name = "TC_NAME", insertable = true, nullable = false, length = 255, unique = true, updatable = true)
     private String name;
 
-    @Column(name = "CP_NAME_FR", insertable = true, nullable = true, length = 255, unique = false, updatable = true)
+    @Column(name = "TC_NAME_FR", insertable = true, nullable = true, length = 255, unique = false, updatable = true)
     private String nom;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CP_CREATION_DATE", insertable = true, nullable = false, unique = false, updatable = false)
+    @Column(name = "TC_CREATION_DATE", insertable = true, nullable = false, unique = false, updatable = false)
     private Date creationDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CP_LAST_UPDATE_DATE", insertable = true, nullable = false, unique = true, updatable = true)
+    @Column(name = "TC_LAST_UPDATE_DATE", insertable = true, nullable = false, unique = true, updatable = true)
     private Date lastUpdateDate;
 
-    public Capacity() {}
+    public TypeCard() {}
 
-    public Capacity(Long inId, String inName, String inNom, Date inCreationDate, Date inLastUpdateDate) {
+    public TypeCard(Long inId, String inName, String inNom, Date inCreationDate, Date inLastUpdateDate) {
         this.creationDate = inCreationDate;
         this.id = inId;
         this.lastUpdateDate = inLastUpdateDate;
@@ -115,7 +115,7 @@ public class Capacity implements Persistable, Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Capacity other = (Capacity) obj;
+        final TypeCard other = (TypeCard) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -124,6 +124,6 @@ public class Capacity implements Persistable, Serializable {
 
     @Override
     public String toString() {
-        return "Capacity{" + "id=" + id + ", name=" + name + ", nom=" + nom + ", creationDate=" + creationDate + ", lastUpdateDate=" + lastUpdateDate + '}';
+        return "TypeCard{" + "id=" + id + ", name=" + name + ", nom=" + nom + ", creationDate=" + creationDate + ", lastUpdateDate=" + lastUpdateDate + '}';
     }
 }

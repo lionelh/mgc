@@ -3,8 +3,10 @@ package be.lionelh.mgc.application.backend.data.dao.impl;
 import be.lionelh.mgc.application.backend.data.dao.CapacityDao;
 import be.lionelh.mgc.application.backend.data.dao.DaoFacade;
 import be.lionelh.mgc.application.backend.data.dao.FamilyDao;
+import be.lionelh.mgc.application.backend.data.dao.TypeCardDao;
 import be.lionelh.mgc.application.backend.data.domain.Capacity;
 import be.lionelh.mgc.application.backend.data.domain.Family;
+import be.lionelh.mgc.application.backend.data.domain.TypeCard;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,9 @@ public class DaoFacadeImpl implements DaoFacade {
 
     @Autowired
     private FamilyDao familyDao;
+
+    @Autowired
+    private TypeCardDao typeCardDao;
 
     @Override
     public Capacity createCapacity(Capacity inCapacity) {
@@ -52,7 +57,7 @@ public class DaoFacadeImpl implements DaoFacade {
     }
 
     @Override
-    public void removeCapacity(Capacity inCapacity) {
+    public void deleteCapacity(Capacity inCapacity) {
         this.capacityDao.delete(inCapacity);
     }
 
@@ -87,7 +92,42 @@ public class DaoFacadeImpl implements DaoFacade {
     }
 
     @Override
-    public void removeFamily(Family inFamily) {
+    public void deleteFamily(Family inFamily) {
         this.familyDao.delete(inFamily);
+    }
+
+    @Override
+    public TypeCard createTypeCard(TypeCard inTypeCard) {
+        return this.typeCardDao.create(inTypeCard);
+    }
+
+    @Override
+    public TypeCard findTypeCardById(Long inId) {
+        return this.typeCardDao.findById(inId);
+    }
+
+    @Override
+    public TypeCard findTypeCardByName(String inName) {
+        return this.typeCardDao.findByName(inName);
+    }
+
+    @Override
+    public TypeCard findTypeCardByNom(String inNom) {
+        return this.typeCardDao.findByNom(inNom);
+    }
+
+    @Override
+    public List<TypeCard> findAllTypeCards() {
+        return this.typeCardDao.findAll();
+    }
+
+    @Override
+    public TypeCard updateTypeCard(TypeCard inTypeCard) {
+        return this.typeCardDao.update(inTypeCard);
+    }
+
+    @Override
+    public void deleteTypeCard(TypeCard inTypeCard) {
+        this.typeCardDao.delete(inTypeCard);
     }
 }
