@@ -17,6 +17,10 @@ import org.unitils.dbunit.annotation.DataSet;
 import org.unitils.inject.annotation.TestedObject;
 import org.unitils.spring.annotation.SpringApplicationContext;
 import org.unitils.spring.annotation.SpringBeanByType;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author Lionel
@@ -29,62 +33,62 @@ public class FamilyDaoTest {
 
     @TestedObject
     @SpringBeanByType
-    private FamilyDao FamilyDao;
+    private FamilyDao familyDao;
 
     @Test
     public void testCreate() {
-        Family c = new Family();
-        c.setName("Family 001");
+        Family f = new Family();
+        f.setName("Family 001");
 
-        Family newFamily = this.FamilyDao.create(c);
+        Family newFamily = this.familyDao.create(f);
         assertNotNull(newFamily);
         assertNotNull(newFamily.getId());
-        assertEquals(8, this.FamilyDao.findAll().size());
+        assertEquals(8, this.familyDao.findAll().size());
         assertEquals("Family 001", newFamily.getName());
     }
 
     @Test
     public void testFindAll() {
-        List<Family> l = this.FamilyDao.findAll();
+        List<Family> l = this.familyDao.findAll();
         assertNotNull(l);
         assertEquals(7, l.size());
     }
 
     @Test
     public void testFindById() {
-        Family c = this.FamilyDao.findById(50L);
-        assertNotNull(c);
-        assertEquals("Goblin", c.getName());
+        Family f = this.familyDao.findById(50L);
+        assertNotNull(f);
+        assertEquals("Goblin", f.getName());
     }
 
     @Test
     public void testFindByName() {
-        Family c = this.FamilyDao.findByName("Swamp");
-        assertNotNull(c);
-        assertEquals(new Long(98), c.getId());
+        Family f = this.familyDao.findByName("Swamp");
+        assertNotNull(f);
+        assertEquals(new Long(98), f.getId());
     }
 
     @Test
     public void testFindByNom() {
-        Family c = this.FamilyDao.findByNom("Soldat");
-        assertNotNull(c);
-        assertEquals("Soldier", c.getName());
-        assertEquals(new Long(11), c.getId());
+        Family f = this.familyDao.findByNom("Soldat");
+        assertNotNull(f);
+        assertEquals("Soldier", f.getName());
+        assertEquals(new Long(11), f.getId());
     }
 
     @Test
     public void testUpdate() {
-        Family c = this.FamilyDao.findById(33L);
-        assertEquals("Spirit", c.getName());
+        Family f = this.familyDao.findById(33L);
+        assertEquals("Spirit", f.getName());
         Family oldFamily = new Family();
-        oldFamily.setId(c.getId());
-        oldFamily.setName(c.getName());
-        oldFamily.setNom(c.getNom());
-        oldFamily.setCreationDate(c.getCreationDate());
-        oldFamily.setLastUpdateDate(c.getLastUpdateDate());
+        oldFamily.setId(f.getId());
+        oldFamily.setName(f.getName());
+        oldFamily.setNom(f.getNom());
+        oldFamily.setCreationDate(f.getCreationDate());
+        oldFamily.setLastUpdateDate(f.getLastUpdateDate());
 
-        c.setNom("Esprit");
-        Family updatedFamily = this.FamilyDao.update(c);
+        f.setNom("Esprit");
+        Family updatedFamily = this.familyDao.update(f);
         assertEquals("Esprit", updatedFamily.getNom()); // Was null
         
         assertNotEquals(oldFamily.getLastUpdateDate(), updatedFamily.getLastUpdateDate()); // This date must have change !
@@ -93,10 +97,10 @@ public class FamilyDaoTest {
 
     @Test
     public void testDelete() {
-        Family c = this.FamilyDao.findById(24L);
+        Family f = this.familyDao.findById(24L);
 
-        this.FamilyDao.delete(c);
-        assertNull(this.FamilyDao.findById(24L));
-        assertEquals(6, this.FamilyDao.findAll().size());
+        this.familyDao.delete(f);
+        assertNull(this.familyDao.findById(24L));
+        assertEquals(6, this.familyDao.findAll().size());
     }
 }

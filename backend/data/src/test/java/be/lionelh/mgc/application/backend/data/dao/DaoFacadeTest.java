@@ -1,12 +1,17 @@
 package be.lionelh.mgc.application.backend.data.dao;
 
 import be.lionelh.mgc.application.backend.data.domain.Capacity;
+import be.lionelh.mgc.application.backend.data.domain.Family;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +29,6 @@ import org.unitils.spring.annotation.SpringBeanByType;
 @RunWith(UnitilsJUnit4TestClassRunner.class)
 @SpringApplicationContext("spring-applicationContext-persistence.xml")
 @Transactional(value = TransactionMode.ROLLBACK)
-
 public class DaoFacadeTest {
 
     @TestedObject
@@ -105,5 +109,82 @@ public class DaoFacadeTest {
         this.bean.removeCapacity(c);
         assertNull(this.bean.findCapacityById(2L));
         assertEquals(1, this.bean.findAllCapacities().size());
+    }
+
+
+    @Test
+    @DataSet("/datasets/family.xml")
+    public void testCreate() {
+        Family f = new Family();
+        f.setName("Family 001");
+
+        Family newFamily = this.bean.createFamily(f);
+        assertNotNull(newFamily);
+        assertNotNull(newFamily.getId());
+        assertEquals(8, this.bean.findAllFamilies().size());
+        assertEquals("Family 001", newFamily.getName());
+    }
+
+    @Test
+    @DataSet("/datasets/family.xml")
+    public void testFindAll() {
+        List<Family> l = this.bean.findAllFamilies();
+        assertNotNull(l);
+        assertEquals(7, l.size());
+    }
+
+    @Test
+    @DataSet("/datasets/family.xml")
+    public void testFindById() {
+        Family f = this.bean.findFamilyById(50L);
+        assertNotNull(f);
+        assertEquals("Goblin", f.getName());
+    }
+
+    @Test
+    @DataSet("/datasets/family.xml")
+    public void testFindByName() {
+        Family f = this.bean.findFamilyByName("Swamp");
+        assertNotNull(f);
+        assertEquals(new Long(98), f.getId());
+    }
+
+    @Test
+    @DataSet("/datasets/family.xml")
+    public void testFindByNom() {
+        Family f = this.bean.findFamilyByNom("Soldat");
+        assertNotNull(f);
+        assertEquals("Soldier", f.getName());
+        assertEquals(new Long(11), f.getId());
+    }
+
+    @Test
+    @DataSet("/datasets/family.xml")
+    public void testUpdate() {
+        Family f = this.bean.findFamilyById(33L);
+        assertEquals("Spirit", f.getName());
+        Family oldFamily = new Family();
+        oldFamily.setId(f.getId());
+        oldFamily.setName(f.getName());
+        oldFamily.setNom(f.getNom());
+        oldFamily.setCreationDate(f.getCreationDate());
+        oldFamily.setLastUpdateDate(f.getLastUpdateDate());
+
+        f.setNom("Esprit");
+        Family updatedFamily = this.bean.updateFamily(f);
+        assertEquals("Esprit", updatedFamily.getNom()); // Was null
+        
+        assertNotEquals(oldFamily.getLastUpdateDate(), updatedFamily.getLastUpdateDate()); // This date must have change !
+        assertEquals(oldFamily.getCreationDate(), updatedFamily.getCreationDate()); // This date must not have changed !
+    }
+
+    @Test
+    @DataSet("/datasets/family.xml")
+    public void testDelete() {
+        Family f = this.bean.findFamilyById(24L);
+
+        this.bean.removeFamily(f);
+        assertNull(this.bean.findFamilyById(24L));
+        assertEquals(6, this.bean.findAllFamilies().size());
     }
 }
