@@ -24,7 +24,7 @@ import org.unitils.spring.annotation.SpringBeanByType;
 @RunWith(UnitilsJUnit4TestClassRunner.class)
 @SpringApplicationContext("spring-applicationContext-persistence.xml")
 @Transactional(value = TransactionMode.ROLLBACK)
-@DataSet("/dataset-capacity.xml")
+@DataSet("/datasets/capacity.xml")
 public class CapacityDaoTest {
 
     @TestedObject

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <mgc_family fa_id="11" fa_name="Soldier" fa_name_fr="Soldat" fa_creation_date="2015-02-24 16:13:57" fa_last_update_date="2015-02-24 16:13:57" />
+  <mgc_family fa_id="16" fa_name="Knight" fa_creation_date="2015-02-24 16:13:57" fa_last_update_date="2015-02-24 16:13:57" />
+  <mgc_family fa_id="24" fa_name="Wall" fa_creation_date="2015-02-24 16:13:57" fa_last_update_date="2015-02-24 16:13:57" />
+  <mgc_family fa_id="33" fa_name="Spirit" fa_creation_date="2015-02-24 16:13:57" fa_last_update_date="2015-02-24 16:13:57" />
+  <mgc_family fa_id="34" fa_name="Legend" fa_creation_date="2015-02-24 16:13:57" fa_last_update_date="2015-02-24 16:13:57" />
+  <mgc_family fa_id="50" fa_name="Goblin" fa_creation_date="2015-02-24 16:13:57" fa_last_update_date="2015-02-24 16:13:57" />
+  <mgc_family fa_id="98" fa_name="Swamp" fa_creation_date="2015-02-24 16:13:57" fa_last_update_date="2015-02-24 16:13:57" />
+</dataset>

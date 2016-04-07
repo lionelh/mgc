@@ -32,7 +32,7 @@ public class DaoFacadeTest {
     private DaoFacade bean;
 
     @Test
-    @DataSet("/dataset-capacity.xml")
+    @DataSet("/datasets/capacity.xml")
     public void testCreateCapacity() {
         Capacity c = new Capacity();
         c.setName("Capacity 001");
@@ -45,7 +45,7 @@ public class DaoFacadeTest {
     }
 
     @Test
-    @DataSet("/dataset-capacity.xml")
+    @DataSet("/datasets/capacity.xml")
     public void testFindAllCapacities() {
         List<Capacity> l = this.bean.findAllCapacities();
         assertNotNull(l);
@@ -53,7 +53,7 @@ public class DaoFacadeTest {
     }
 
     @Test
-    @DataSet("/dataset-capacity.xml")
+    @DataSet("/datasets/capacity.xml")
     public void testFindCapacityById() {
         Capacity c = this.bean.findCapacityById(1L);
         assertNotNull(c);
@@ -61,7 +61,7 @@ public class DaoFacadeTest {
     }
 
     @Test
-    @DataSet("/dataset-capacity.xml")
+    @DataSet("/datasets/capacity.xml")
     public void testFindCapacityByName() {
         Capacity c = this.bean.findCapacityByName("Haste");
         assertNotNull(c);
@@ -69,7 +69,7 @@ public class DaoFacadeTest {
     }
 
     @Test
-    @DataSet("/dataset-capacity.xml")
+    @DataSet("/datasets/capacity.xml")
     public void testFindCapacityByNom() {
         Capacity c = this.bean.findCapacityByNom("Initiative");
         assertNotNull(c);
@@ -78,7 +78,7 @@ public class DaoFacadeTest {
     }
 
     @Test
-    @DataSet("/dataset-capacity.xml")
+    @DataSet("/datasets/capacity.xml")
     public void testUpdateCapacity() {
         Capacity c = this.bean.findCapacityById(1L);
         assertEquals("Haste", c.getName());
@@ -98,7 +98,7 @@ public class DaoFacadeTest {
     }
 
     @Test
-    @DataSet("/dataset-capacity.xml")
+    @DataSet("/datasets/capacity.xml")
     public void testRemoveCapacity() {
         Capacity c = this.bean.findCapacityById(2L);
 

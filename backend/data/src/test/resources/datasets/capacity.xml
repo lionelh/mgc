@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <mgc_capacity cp_id="2" cp_name="First strike" cp_name_fr="Initiative" cp_creation_date="2015-02-24 16:13:57" cp_last_update_date="2015-02-24 16:13:57" />
+  <mgc_capacity cp_id="1" cp_name="Haste" cp_creation_date="2015-02-24 16:13:57" cp_last_update_date="2015-02-24 16:13:57" />
+</dataset>
