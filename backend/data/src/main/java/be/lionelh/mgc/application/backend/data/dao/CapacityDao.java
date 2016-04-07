@@ -13,5 +13,5 @@ public interface CapacityDao {
     Capacity findByNom(String inNom);
     List<Capacity> findAll();
     Capacity update(Capacity inCapacity);
-    boolean delete(Capacity inCapacity);
+    void delete(Capacity inCapacity);
 }
