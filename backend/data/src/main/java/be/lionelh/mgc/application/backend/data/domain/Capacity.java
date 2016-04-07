@@ -22,9 +22,9 @@ import javax.persistence.TemporalType;
 @EntityListeners({DateEntityListener.class})
 @Table(name = "mgc_capacity")
 @NamedQueries({
-    @NamedQuery(name = "Capacity.FIND_ALL", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Capacity(id,name,nom,creationDate,lastUpdateDate) FROM Capacity c"),
-    @NamedQuery(name = "Capacity.FIND_BY_NAME", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Capacity(id,name,nom,creationDate,lastUpdateDate) FROM Capacity c WHERE c.name = :name"),
-    @NamedQuery(name = "Capacity.FIND_BY_NOM", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Capacity(id,name,nom,creationDate,lastUpdateDate) FROM Capacity c WHERE c.nom = :nom"),
+    @NamedQuery(name = "Capacity.FIND_ALL", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Capacity(c.id,c.name,c.nom,c.creationDate,c.lastUpdateDate) FROM Capacity c"),
+    @NamedQuery(name = "Capacity.FIND_BY_NAME", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Capacity(c.id,c.name,c.nom,c.creationDate,c.lastUpdateDate) FROM Capacity c WHERE c.name = :name"),
+    @NamedQuery(name = "Capacity.FIND_BY_NOM", query = "SELECT new be.lionelh.mgc.application.backend.data.domain.Capacity(c.id,c.name,c.nom,c.creationDate,c.lastUpdateDate) FROM Capacity c WHERE c.nom = :nom"),
 })
 @SuppressWarnings("SerializableClass")
 public class Capacity implements Persistable, Serializable {

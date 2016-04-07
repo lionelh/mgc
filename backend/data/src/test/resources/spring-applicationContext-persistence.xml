@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd 
+                           http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+    <!-- Enables Spring beans definitions (components, services, etc) by annotations -->
+    <context:component-scan base-package="be.lionelh.mgc"/>
+
+    <!-- Enables Tx by annotations in classes -->
+    <tx:annotation-driven transaction-manager="txManager" />
+  
+    <!-- Enables Spring beans definitions (components, services, etc) by annotations -->
+    <context:annotation-config />
+
+    <!-- ******************************************************************************************************** -->
+    <!-- **     JPA Features                                                                                   ** -->
+    <!-- ******************************************************************************************************** -->
+    <!-- Exceptions Translation to Spring hierarchy -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+    <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect"/>
+
+    <!-- ******************************************************************************************************** -->
+    <!-- **     Transaction Features                                                                           ** -->
+    <!-- **     - used to get/create Transaction Manager                                                       ** -->
+    <!-- **     - used to create proxies on some business methods                                              ** -->
+    <!-- ******************************************************************************************************** -->
+    <!-- Transaction Manager -->
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emFactory" />
+        <property name="jpaDialect" ref="jpaDialect" />
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- added beans to sts-persistence-context for test support -->
+    <bean id="emFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceXmlLocation" value="META-INF/persistence-test.xml" />
+        <property name="jpaVendorAdapter" ref="jpaAdapter"/>
+    </bean>
+
+    <bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+        <property name="databasePlatform" value="org.eclipse.persistence.platform.database.HSQLPlatform" />
+    	<property name="showSql" value="true" />
+    </bean>
+
+    <!-- ******************************************************************************************************** -->
+    <!-- **     AOP Features (exceptions, logging, ...)                                                        ** -->
+    <!-- ******************************************************************************************************** -->
+    <!-- Proxy -->
+    <bean id="autoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+
+    <!-- ******************************************************************************************************************************** -->
+    <!-- **     DataSources definitions                                                                                                ** -->
+    <!-- **     - dataSource           ==> HSQLDB in memory database                                                                   ** -->
+    <!-- ******************************************************************************************************************************** -->
+    <bean id="dataSource" class="org.unitils.database.UnitilsDataSourceFactoryBean" />
+</beans>

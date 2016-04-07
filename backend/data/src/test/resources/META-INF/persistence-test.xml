@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_1.xsd">
+    
+    <persistence-unit name="mgcDataPU-test" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>be.lionelh.mgc.application.backend.data.domain.Capacity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>    
+
+        <properties>
+            <property name="eclipselink.target-server" value="None" />
+            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:mgctest" />
+            <property name="javax.persistence.jdbc.user" value="sa" />
+            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+            <!--property name="javax.persistence.sql-load-script-source" value="META-INF/insert.sql"/-->
+            <property name="javax.persistence.schema-generation.create-source" value="metadata" />
+            <property name="javax.persistence.schema-generation.drop-source" value="metadata" />
+            
+            <property name="eclipselink.jdbc.native-sql" value="true" />
+            <property name="eclipselink.jdbc.batch-writing" value="JDBC" />
+            <property name="eclipselink.jdbc.cache-statements" value="true" />
+            <property name="eclipselink.jdbc.bind-parameters" value="true" />
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            <property name="eclipselink.logging.level" value="SEVERE"/>
+            <property name="eclipselink.logging.session" value="false"/>
+            <!-- disable the cache -->
+            <property name="eclipselink.cache.type.default" value="NONE" />
+            <property name="eclipselink.cache.shared.default" value="false" />
+            <property name="eclipselink.weaving" value="false" />
+        </properties>
+    </persistence-unit>
+</persistence>
