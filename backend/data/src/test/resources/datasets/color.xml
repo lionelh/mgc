@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <mgc_color co_id="2" co_name="Black"    co_abbreviation="B" co_name_fr="Noir" co_creation_date="2015-02-24 16:13:57" co_last_update_date="2015-02-24 16:13:57" />
+  <mgc_color co_id="1" co_name="Artifact"                                       co_creation_date="2015-02-24 16:13:57" co_last_update_date="2015-02-24 16:13:57" />
+  <mgc_color co_id="3" co_name="Blue"     co_abbreviation="U"                   co_creation_date="2015-02-24 16:13:57" co_last_update_date="2015-02-24 16:13:57" />
+  <mgc_color co_id="4" co_name="White"    co_abbreviation="W"                   co_creation_date="2015-02-24 16:13:57" co_last_update_date="2015-02-24 16:13:57" />
+  <mgc_color co_id="5" co_name="Red"      co_abbreviation="R"                   co_creation_date="2015-02-24 16:13:57" co_last_update_date="2015-02-24 16:13:57" />
+  <mgc_color co_id="6" co_name="Land"                                           co_creation_date="2015-02-24 16:13:57" co_last_update_date="2015-02-24 16:13:57" />
+  <mgc_color co_id="7" co_name="Green"    co_abbreviation="G"                   co_creation_date="2015-02-24 16:13:57" co_last_update_date="2015-02-24 16:13:57" />
+  <mgc_color co_id="8" co_name="Gold"                                           co_creation_date="2015-02-24 16:13:57" co_last_update_date="2015-02-24 16:13:57" />
+</dataset>

@@ -1,10 +1,12 @@
 package be.lionelh.mgc.application.backend.data.dao.impl;
 
 import be.lionelh.mgc.application.backend.data.dao.CapacityDao;
+import be.lionelh.mgc.application.backend.data.dao.ColorDao;
 import be.lionelh.mgc.application.backend.data.dao.DaoFacade;
 import be.lionelh.mgc.application.backend.data.dao.FamilyDao;
 import be.lionelh.mgc.application.backend.data.dao.TypeCardDao;
 import be.lionelh.mgc.application.backend.data.domain.Capacity;
+import be.lionelh.mgc.application.backend.data.domain.Color;
 import be.lionelh.mgc.application.backend.data.domain.Family;
 import be.lionelh.mgc.application.backend.data.domain.TypeCard;
 import java.util.List;
@@ -19,6 +21,9 @@ public class DaoFacadeImpl implements DaoFacade {
 
     @Autowired
     private CapacityDao capacityDao;
+
+    @Autowired
+    private ColorDao colorDao;
 
     @Autowired
     private FamilyDao familyDao;
@@ -59,6 +64,41 @@ public class DaoFacadeImpl implements DaoFacade {
     @Override
     public void deleteCapacity(Capacity inCapacity) {
         this.capacityDao.delete(inCapacity);
+    }
+
+    @Override
+    public Color createColor(Color inColor) {
+        return this.colorDao.create(inColor);
+    }
+
+    @Override
+    public Color findColorById(Long inId) {
+        return this.colorDao.findById(inId);
+    }
+
+    @Override
+    public Color findColorByName(String inName) {
+        return this.colorDao.findByName(inName);
+    }
+
+    @Override
+    public Color findColorByNom(String inNom) {
+        return this.colorDao.findByNom(inNom);
+    }
+
+    @Override
+    public List<Color> findAllColors() {
+        return this.colorDao.findAll();
+    }
+
+    @Override
+    public Color updateColor(Color inColor) {
+        return this.colorDao.update(inColor);
+    }
+
+    @Override
+    public void deleteColor(Color inColor) {
+        this.colorDao.delete(inColor);
     }
 
     @Override

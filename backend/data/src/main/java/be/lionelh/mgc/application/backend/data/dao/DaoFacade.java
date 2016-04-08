@@ -1,6 +1,7 @@
 package be.lionelh.mgc.application.backend.data.dao;
 
 import be.lionelh.mgc.application.backend.data.domain.Capacity;
+import be.lionelh.mgc.application.backend.data.domain.Color;
 import be.lionelh.mgc.application.backend.data.domain.Family;
 import be.lionelh.mgc.application.backend.data.domain.TypeCard;
 import java.util.List;
@@ -16,6 +17,14 @@ public interface DaoFacade {
     List<Capacity> findAllCapacities();
     Capacity updateCapacity(Capacity inCapacity);
     void deleteCapacity(Capacity inCapacity);
+
+    Color createColor(Color inColor);
+    Color findColorById(Long inId);
+    Color findColorByName(String inName);
+    Color findColorByNom(String inNom);
+    List<Color> findAllColors();
+    Color updateColor(Color inColor);
+    void deleteColor(Color inColor);
     
     Family createFamily(Family inFamily);
     Family findFamilyById(Long inId);

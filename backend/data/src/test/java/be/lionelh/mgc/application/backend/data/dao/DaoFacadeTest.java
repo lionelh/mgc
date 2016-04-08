@@ -1,6 +1,7 @@
 package be.lionelh.mgc.application.backend.data.dao;
 
 import be.lionelh.mgc.application.backend.data.domain.Capacity;
+import be.lionelh.mgc.application.backend.data.domain.Color;
 import be.lionelh.mgc.application.backend.data.domain.Family;
 import be.lionelh.mgc.application.backend.data.domain.TypeCard;
 
@@ -108,6 +109,81 @@ public class DaoFacadeTest {
         assertEquals(1, this.bean.findAllCapacities().size());
     }
 
+    @Test
+    @DataSet("/datasets/color.xml")
+    public void testCreateColor() {
+        Color c = new Color();
+        c.setName("Color 001");
+
+        Color newColor = this.bean.createColor(c);
+        assertNotNull(newColor);
+        assertNotNull(newColor.getId());
+        assertEquals(9, this.bean.findAllColors().size());
+        assertEquals("Color 001", newColor.getName());
+    }
+
+    @Test
+    @DataSet("/datasets/color.xml")
+    public void testFindAllColors() {
+        List<Color> l = this.bean.findAllColors();
+        assertNotNull(l);
+        assertEquals(8, l.size());
+    }
+
+    @Test
+    @DataSet("/datasets/color.xml")
+    public void testFindColorById() {
+        Color c = this.bean.findColorById(3L);
+        assertNotNull(c);
+        assertEquals("Blue", c.getName());
+    }
+
+    @Test
+    @DataSet("/datasets/color.xml")
+    public void testFindColorByName() {
+        Color c = this.bean.findColorByName("White");
+        assertNotNull(c);
+        assertEquals(new Long(4), c.getId());
+    }
+
+    @Test
+    @DataSet("/datasets/color.xml")
+    public void testFindColorByNom() {
+        Color c = this.bean.findColorByNom("Noir");
+        assertNotNull(c);
+        assertEquals("Black", c.getName());
+        assertEquals(new Long(2), c.getId());
+    }
+
+    @Test
+    @DataSet("/datasets/color.xml")
+    public void testUpdateColor() {
+        Color c = this.bean.findColorById(5L);
+        assertEquals("Red", c.getName());
+        Color oldColor = new Color();
+        oldColor.setId(c.getId());
+        oldColor.setName(c.getName());
+        oldColor.setNom(c.getNom());
+        oldColor.setCreationDate(c.getCreationDate());
+        oldColor.setLastUpdateDate(c.getLastUpdateDate());
+
+        c.setNom("Rouge");
+        Color updatedColor = this.bean.updateColor(c);
+        assertEquals("Rouge", updatedColor.getNom()); // Was null
+        
+        assertNotEquals(oldColor.getLastUpdateDate(), updatedColor.getLastUpdateDate()); // This date must have change !
+        assertEquals(oldColor.getCreationDate(), updatedColor.getCreationDate()); // This date must not have changed !
+    }
+
+    @Test
+    @DataSet("/datasets/color.xml")
+    public void testDeleteColor() {
+        Color c = this.bean.findColorById(2L);
+
+        this.bean.deleteColor(c);
+        assertNull(this.bean.findColorById(2L));
+        assertEquals(7, this.bean.findAllColors().size());
+    }
 
     @Test
     @DataSet("/datasets/family.xml")
