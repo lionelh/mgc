@@ -136,6 +136,6 @@ public class Color implements Persistable, Serializable {
 
     @Override
     public String toString() {
-        return "Capacity{" + "id=" + id + ", name=" + name + ", nom=" + nom + ",abbreviation=" + abbreviation + ", creationDate=" + creationDate + ", lastUpdateDate=" + lastUpdateDate + '}';
+        return "Color{" + "id=" + id + ", name=" + name + ", nom=" + nom + ",abbreviation=" + abbreviation + ", creationDate=" + creationDate + ", lastUpdateDate=" + lastUpdateDate + '}';
     }
 }

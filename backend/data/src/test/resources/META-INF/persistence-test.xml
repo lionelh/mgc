@@ -6,6 +6,7 @@
     <persistence-unit name="mgcDataPU-test" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>be.lionelh.mgc.application.backend.data.domain.Capacity</class>
+        <class>be.lionelh.mgc.application.backend.data.domain.Card</class>
         <class>be.lionelh.mgc.application.backend.data.domain.Color</class>
         <class>be.lionelh.mgc.application.backend.data.domain.Family</class>
         <class>be.lionelh.mgc.application.backend.data.domain.TypeCard</class>

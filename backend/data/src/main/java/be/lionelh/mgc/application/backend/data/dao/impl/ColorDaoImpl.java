@@ -39,7 +39,7 @@ public class ColorDaoImpl implements ColorDao {
         } else if (l.size() == 1) {
             return l.get(0);
         } else {
-            throw new RuntimeException("Too many Capacity found for name (" + inName + ") !");
+            throw new RuntimeException("Too many Color found for name (" + inName + ") !");
         }
     }
 
@@ -53,7 +53,7 @@ public class ColorDaoImpl implements ColorDao {
         } else if (l.size() == 1) {
             return l.get(0);
         } else {
-            throw new RuntimeException("Too many Capacity found for nom (" + inNom + ") !");
+            throw new RuntimeException("Too many Color found for nom (" + inNom + ") !");
         }
     }
 

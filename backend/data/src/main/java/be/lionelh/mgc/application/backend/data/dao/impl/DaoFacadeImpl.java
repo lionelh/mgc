@@ -1,11 +1,13 @@
 package be.lionelh.mgc.application.backend.data.dao.impl;
 
 import be.lionelh.mgc.application.backend.data.dao.CapacityDao;
+import be.lionelh.mgc.application.backend.data.dao.CardDao;
 import be.lionelh.mgc.application.backend.data.dao.ColorDao;
 import be.lionelh.mgc.application.backend.data.dao.DaoFacade;
 import be.lionelh.mgc.application.backend.data.dao.FamilyDao;
 import be.lionelh.mgc.application.backend.data.dao.TypeCardDao;
 import be.lionelh.mgc.application.backend.data.domain.Capacity;
+import be.lionelh.mgc.application.backend.data.domain.Card;
 import be.lionelh.mgc.application.backend.data.domain.Color;
 import be.lionelh.mgc.application.backend.data.domain.Family;
 import be.lionelh.mgc.application.backend.data.domain.TypeCard;
@@ -22,6 +24,9 @@ public class DaoFacadeImpl implements DaoFacade {
     @Autowired
     private CapacityDao capacityDao;
 
+    @Autowired
+    private CardDao cardDao;
+    
     @Autowired
     private ColorDao colorDao;
 
@@ -64,6 +69,41 @@ public class DaoFacadeImpl implements DaoFacade {
     @Override
     public void deleteCapacity(Capacity inCapacity) {
         this.capacityDao.delete(inCapacity);
+    }
+
+    @Override
+    public Card createCard(Card inCard) {
+        return this.cardDao.create(inCard);
+    }
+
+    @Override
+    public Card findCardById(Long inId) {
+        return this.cardDao.findById(inId);
+    }
+
+    @Override
+    public Card findCardByName(String inName) {
+        return this.cardDao.findByName(inName);
+    }
+
+    @Override
+    public Card findCardByNom(String inNom) {
+        return this.cardDao.findByNom(inNom);
+    }
+
+    @Override
+    public List<Card> findAllCards() {
+        return this.cardDao.findAll();
+    }
+
+    @Override
+    public Card updateCard(Card inCard) {
+        return this.cardDao.update(inCard);
+    }
+
+    @Override
+    public void deleteCard(Card inCard) {
+        this.cardDao.delete(inCard);
     }
 
     @Override

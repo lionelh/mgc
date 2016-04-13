@@ -1,6 +1,7 @@
 package be.lionelh.mgc.application.backend.data.dao;
 
 import be.lionelh.mgc.application.backend.data.domain.Capacity;
+import be.lionelh.mgc.application.backend.data.domain.Card;
 import be.lionelh.mgc.application.backend.data.domain.Color;
 import be.lionelh.mgc.application.backend.data.domain.Family;
 import be.lionelh.mgc.application.backend.data.domain.TypeCard;
@@ -110,6 +111,85 @@ public class DaoFacadeTest {
     }
 
     @Test
+    @DataSet("/datasets/card.xml")
+    public void testCreateCard() {
+        Card c = new Card();
+        c.setName("Card 001");
+        Color co = this.bean.findColorById(1L);
+        c.setColor(co);
+        TypeCard tc = this.bean.findTypeCardById(2L);
+        c.setTypeCard(tc);
+        Card newCard = this.bean.createCard(c);
+        assertNotNull(newCard);
+        assertNotNull(newCard.getId());
+        assertEquals(3, this.bean.findAllCards().size());
+        assertEquals("Card 001", newCard.getName());
+    }
+
+    @Test
+    @DataSet("/datasets/card.xml")
+    public void testFindAllCards() {
+        List<Card> l = this.bean.findAllCards();
+        assertNotNull(l);
+        assertEquals(2, l.size());
+    }
+
+    @Test
+    @DataSet("/datasets/card.xml")
+    public void testFindCardById() {
+        Card c = this.bean.findCardById(2L);
+        assertNotNull(c);
+        assertEquals("Swamp", c.getName());
+    }
+
+    @Test
+    @DataSet("/datasets/card.xml")
+    public void testFindCardByName() {
+        Card c = this.bean.findCardByName("Swamp");
+        assertNotNull(c);
+        assertEquals(new Long(2), c.getId());
+    }
+
+    @Test
+    @DataSet("/datasets/card.xml")
+    public void testFindCardByNom() {
+        Card c = this.bean.findCardByNom("Chevalier noir");
+        assertNotNull(c);
+        assertEquals("Black knight", c.getName());
+        assertEquals(new Long(1), c.getId());
+    }
+
+    @Test
+    @DataSet("/datasets/card.xml")
+    public void testUpdateCard() {
+        Card c = this.bean.findCardById(2L);
+        assertEquals("Swamp", c.getName());
+        Card oldCard = new Card();
+        oldCard.setId(c.getId());
+        oldCard.setName(c.getName());
+        oldCard.setNom(c.getNom());
+        oldCard.setCreationDate(c.getCreationDate());
+        oldCard.setLastUpdateDate(c.getLastUpdateDate());
+
+        c.setNom("Marais");
+        Card updatedCard = this.bean.updateCard(c);
+        assertEquals("Marais", updatedCard.getNom()); // Was null
+        
+        assertNotEquals(oldCard.getLastUpdateDate(), updatedCard.getLastUpdateDate()); // This date must have change !
+        assertEquals(oldCard.getCreationDate(), updatedCard.getCreationDate()); // This date must not have changed !
+    }
+
+    @Test
+    @DataSet("/datasets/card.xml")
+    public void testDeleteCard() {
+        Card c = this.bean.findCardById(2L);
+
+        this.bean.deleteCard(c);
+        assertNull(this.bean.findCardById(2L));
+        assertEquals(1, this.bean.findAllCards().size());
+    }
+
+    @Test
     @DataSet("/datasets/color.xml")
     public void testCreateColor() {
         Color c = new Color();
@@ -187,7 +267,7 @@ public class DaoFacadeTest {
 
     @Test
     @DataSet("/datasets/family.xml")
-    public void testCreate() {
+    public void testCreateFamily() {
         Family f = new Family();
         f.setName("Family 001");
 
@@ -200,7 +280,7 @@ public class DaoFacadeTest {
 
     @Test
     @DataSet("/datasets/family.xml")
-    public void testFindAll() {
+    public void testFindAllFamilies() {
         List<Family> l = this.bean.findAllFamilies();
         assertNotNull(l);
         assertEquals(7, l.size());
@@ -208,7 +288,7 @@ public class DaoFacadeTest {
 
     @Test
     @DataSet("/datasets/family.xml")
-    public void testFindById() {
+    public void testFindFamilyById() {
         Family f = this.bean.findFamilyById(50L);
         assertNotNull(f);
         assertEquals("Goblin", f.getName());
@@ -216,7 +296,7 @@ public class DaoFacadeTest {
 
     @Test
     @DataSet("/datasets/family.xml")
-    public void testFindByName() {
+    public void testFindFamilyByName() {
         Family f = this.bean.findFamilyByName("Swamp");
         assertNotNull(f);
         assertEquals(new Long(98), f.getId());
@@ -224,7 +304,7 @@ public class DaoFacadeTest {
 
     @Test
     @DataSet("/datasets/family.xml")
-    public void testFindByNom() {
+    public void testFindFamilyByNom() {
         Family f = this.bean.findFamilyByNom("Soldat");
         assertNotNull(f);
         assertEquals("Soldier", f.getName());
@@ -233,7 +313,7 @@ public class DaoFacadeTest {
 
     @Test
     @DataSet("/datasets/family.xml")
-    public void testUpdate() {
+    public void testUpdateFamily() {
         Family f = this.bean.findFamilyById(33L);
         assertEquals("Spirit", f.getName());
         Family oldFamily = new Family();
@@ -253,7 +333,7 @@ public class DaoFacadeTest {
 
     @Test
     @DataSet("/datasets/family.xml")
-    public void testDelete() {
+    public void testDeleteFamily() {
         Family f = this.bean.findFamilyById(24L);
 
         this.bean.deleteFamily(f);

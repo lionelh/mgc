@@ -1,6 +1,7 @@
 package be.lionelh.mgc.application.backend.data.dao;
 
 import be.lionelh.mgc.application.backend.data.domain.Capacity;
+import be.lionelh.mgc.application.backend.data.domain.Card;
 import be.lionelh.mgc.application.backend.data.domain.Color;
 import be.lionelh.mgc.application.backend.data.domain.Family;
 import be.lionelh.mgc.application.backend.data.domain.TypeCard;
@@ -17,6 +18,14 @@ public interface DaoFacade {
     List<Capacity> findAllCapacities();
     Capacity updateCapacity(Capacity inCapacity);
     void deleteCapacity(Capacity inCapacity);
+
+    Card createCard(Card inCard);
+    Card findCardById(Long inId);
+    Card findCardByName(String inName);
+    Card findCardByNom(String inNom);
+    List<Card> findAllCards();
+    Card updateCard(Card inCard);
+    void deleteCard(Card inCard);
 
     Color createColor(Color inColor);
     Color findColorById(Long inId);
